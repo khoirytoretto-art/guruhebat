@@ -1,0 +1,8 @@
+{
+  "name": "AsistenGuru - Manajemen Guru & Jurnal Yayasan",
+  "description": "Aplikasi multi-sekolah AsistenGuru untuk tata kelola guru yayasan, jurnal kelas, absensi presensi, dan cetak rekap landscape A4.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

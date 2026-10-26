@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Print Rules for Pure Vector Landscape Printing (F4 & A4) */
+@page {
+  size: landscape;
+  margin: 5mm;
+}
+
+@media print {
+  /* Indonesian Folio / F4: 330mm x 215mm Landscape */
+  body.print-f4 {
+    width: 330mm !important;
+  }
+  /* ISO A4: 297mm x 210mm Landscape */
+  body.print-a4 {
+    width: 297mm !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* UNCONSTRAIN PARENT SHELLS SO OVERFLOW SCROLL OR MAX-HEIGHT NEVER CHOP CONTENT */
+  #root, main, section, article {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  /* Ruang tanda tangan resmi: dijamin tidak kolaps saat print */
+  .signature-space {
+    height: 100px !important;
+    min-height: 100px !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Hide entire application shell and buttons */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Display ONLY the print document */
+  .printable-document-root,
+  .printable-document-root * {
+    visibility: visible !important;
+  }
+
+  .printable-document-root {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  .printable-area {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  table {
+    max-width: 100% !important;
+  }
+
+  /* Avoid row clipping and ensure table headers repeat cleanly across multiple pages */
+  thead {
+    display: table-header-group !important;
+  }
+  tfoot {
+    display: table-footer-group !important;
+  }
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  .signature-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Ensure table cells in documents have crisp borders and no weird overlap */
+.doc-table th, .doc-table td {
+  border: 1px solid #0f172a !important;
+  vertical-align: middle !important;
+}
